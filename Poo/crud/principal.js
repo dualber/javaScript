@@ -1,20 +1,35 @@
 import {Persona} from './persona.js';
-let listPersonas = [
-    {nombre:"andres",edad:25,altura:1.70},
-    {nombre:"jota",edad:22,altura:1.80},
-    {nombre:"miguel",edad:20,altura:1.76}
-];
 
-/*
-const persona1 = new Persona('dualber',24,1.70);
-let nombrePersona = document.getElementById('nombre');
-let edadPersona = document.getElementById('edad');
-let alturaPersona = document.getElementById('altura');
 
-nombrePersona.innerText = persona1.nombre;
-edadPersona.innerText = persona1.Edad;
-alturaPersona.innerText = persona1.altura;
-*/
+let listPersonas = [];
+
+
+
+
+const form = document.getElementById('personaForm');
+
+
+
+//creamos el evento que guardará los datos de la persona al realizar el submit
+form.addEventListener('submit', function(event){
+    event.preventDefault();
+    //definimos las variables que entraran al objeto
+    const nombre = document.getElementById('nombre').value;
+    const edad = document.getElementById('edad').value;
+    const altura = document.getElementById('altura').value;
+
+    const persona1 = new Persona(nombre,edad,altura);
+
+    listPersonas.push(persona1)
+    //actualizamos la tabla 0
+    cargarTabla();
+    //limpiamos el formulario
+    form.reset();
+})
+
+
+
+
 
 function cargarTabla(){
     const tbody = document.getElementById("tabla-personas");
@@ -37,6 +52,7 @@ function cargarTabla(){
         tbody.appendChild(fila);
     });
 }
+
  cargarTabla();
 
  window.eliminarPersona = function(index){

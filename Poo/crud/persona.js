@@ -5,23 +5,23 @@ export class Persona{
         this.altura = altura;
     }
 
-    setNombre(nombre){
+    set nombre(nombre){
         this.nombre = nombre;
     }
-    setEdad(edad){
+    set edad(edad){
         this.edad = edad;
     }
-    setAltura(altura){
+    set altura(altura){
         this.altura = altura;
     }
 
-    getNombre(){
+    get nombre(){
         return this.nombre;
     }
-    getEdad(){
+    get edad(){
         return this.edad;
     }
-    getAltura(){
+    get altura(){
         return this.altura;
     }
 

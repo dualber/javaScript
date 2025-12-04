@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personas</title>
+    <title>Animales</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,31 +19,32 @@
     </div>
 </header>
 <main>
-    <section class="sections" id="Setform">
+    <section class="sections" id="SetformAnimales">
        
         <form id="personaForm">
             <h2 class="inputs">formulario</h2>
-            <input  class="inputs" type="text" id="nombre" placeholder="Nombre" required>
-            <input  class="inputs" type="text" id="edad" placeholder="Edad" required>
-            <input  class="inputs" type="text" id="altura" placeholder="Altura (cm)" required>
+            <input  class="inputs" type="text" id="nombreAnimal" placeholder="Nombre" required>
+            <input  class="inputs" type="text" id="raza" placeholder="Raza" required>
+            <input  class="inputs" type="text" id="peso" placeholder="Peso (kg)" required>
             <div class="inputs">
-                    <button   type="submit" id="agregarPersona">Agregar</button>
+                    <button   type="submit" id="agregarAnimal">Agregar</button>
             </div>
+            
         </form>
 
     </section>
-    <section class="sections" id="setTable" >
-        <h2 id="tituloPersona">Personas</h2>
+    <section class="sections" id="setTableAnimal" >
+        <h2 id="tituloAnimal">Animales</h2>
         <table border="1">
-            <thead>
+            <thead
             <tr>
                 <th>Nombre</th>
-                <th>edad</th>
-                <th>altura</th>
+                <th>Raza</th>
+                <th>Peso</th>
                 <th>Acciones</th>
             </tr>
             </thead>
-            <tbody id="tabla-personas">
+            <tbody id="tabla-animales">
             </tbody>
         </table>
     </section>
