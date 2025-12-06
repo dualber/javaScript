@@ -6,12 +6,12 @@ let listPersonas = [];
 
 
 
-const form = document.getElementById('personaForm');
+const personaForm = document.getElementById('personaForm');
 
 
 
 //creamos el evento que guardará los datos de la persona al realizar el submit
-form.addEventListener('submit', function(event){
+Personaform.addEventListener('submit', function(event){
     event.preventDefault();
     //definimos las variables que entraran al objeto
     const nombre = document.getElementById('nombre').value;
