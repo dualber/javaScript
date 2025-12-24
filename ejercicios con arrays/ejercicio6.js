@@ -1,36 +1,71 @@
-/*
-Recorre el array ventas.
-Crea un objeto llamado resumenVentas.
-El objeto debe tener esta estructura:
-
+/**Instrucciones
+Recorre el array estudiantes.
+Para cada estudiante:
+Calcula el promedio de sus notas.
+Determina el estado:
+promedio >= 3 → "Aprobado"
+promedio < 3 → "Reprobado"
+Crea un nuevo array llamado resultadoFinal.
+Cada elemento del array debe tener esta estructura:
 {
-  Ana: 5,
-  Carlos: 3,
-  Beatriz: 2
+  nombre: "Ana",
+  promedio: 4.17,
+  estado: "Aprobado"
 }
+  Reglas (importantes)
+❌ No usar map(), reduce() ni filter().
+❌ No modificar el array original.
+✅ Usar for o for...of.
+✅ El promedio debe redondearse a 2 decimales.
+✅ El cálculo del promedio debe hacerse manualmente.
+ */
 
-*/
-
-const ventas = [
-  { cliente: "Ana", producto: "Laptop", cantidad: 1 },
-  { cliente: "Carlos", producto: "Mouse", cantidad: 2 },
-  { cliente: "Ana", producto: "Mouse", cantidad: 1 },
-  { cliente: "Beatriz", producto: "Monitor", cantidad: 2 },
-  { cliente: "Carlos", producto: "Laptop", cantidad: 1 },
-  { cliente: "Ana", producto: "USB", cantidad: 3 },
+const estudiantes = [
+  { nombre: "Ana", notas: [4, 3.5, 5] },
+  { nombre: "Carlos", notas: [2, 3, 2.5] },
+  { nombre: "Beatriz", notas: [5, 4.5, 4] },
+  { nombre: "Daniel", notas: [3, 3, 3] }
 ];
 
-const bucarVentas = (() => {
-  let personasYventas = {};
+const buscarNotas = ((estudiantes) => {
+  
+  const resultadoFinal = [];
+  for (let estudiante of estudiantes) {
 
-  for (let venta of ventas) {
-    if (personasYventas[venta.cliente]) {
-      personasYventas[venta.cliente] += venta.cantidad;
-    } else {
-      personasYventas[venta.cliente] = venta.cantidad;
+    let promedio = promedioNotas(estudiante.notas);
+    //formas de realizar los objetos
+
+    //forma 1 
+  /*
+    const estudiantesYnotas = {};
+    
+    estudiantesYnotas['nombre'] = estudiante.nombre;
+    estudiantesYnotas["promedio"] = Number(promedio.toFixed(2)); // .toFixed crea un string por lo tanto hay que ponerlo dentro de la funcion Number
+    estudiantesYnotas['estado'] = (promedio >= 3) ? 'Aprobado' : 'Reprobado';
+    resultadoFinal.push(estudiantesYnotas);
     }
+  */
+  
+  //forma 2
+    const estudiantesYnotas = {
+      "nombre":estudiante.nombre,
+      "promedio":Number(promedio.toFixed(2)),
+      "estado": promedio >=3 ? "Aprobado":"Reprobado"
+    }
+    resultadoFinal.push(estudiantesYnotas);
   }
-  return personasYventas;
+  return resultadoFinal;
 });
 
-console.log(bucarVentas(ventas));
+const promedioNotas = ((notas) => {
+  let suma = 0;
+  for (let nota of notas) {
+    suma += nota;
+  }
+  return suma / notas.length;
+})
+
+resultado = buscarNotas(estudiantes);
+for(let estudiante of resultado){
+  console.log(estudiante);
+}

@@ -1,73 +1,65 @@
-/**Instrucciones
-Recorre el array estudiantes.
-Para cada estudiante:
-Calcula el promedio de sus notas.
-Determina el estado:
-promedio >= 3 → "Aprobado"
-promedio < 3 → "Reprobado"
-Crea un nuevo array llamado resultadoFinal.
-Cada elemento del array debe tener esta estructura:
-{
-  nombre: "Ana",
-  promedio: 4.17,
-  estado: "Aprobado"
-}
-  Reglas (importantes)
-❌ No usar map(), reduce() ni filter().
+/*
+instrucciones
+Recorre el array pedidos.
+Crea un objeto gastoPorCliente
+Suma el total gastado por cada cliente.
+Crea un nuevo array con esta estructura:
+[
+  { cliente: "Ana", totalGastado: 200 },
+  { cliente: "Carlos", totalGastado: 120 },
+  { cliente: "Beatriz", totalGastado: 200 }
+]
+📌 Reglas
+❌ No usar reduce(), map(), filter().
 ❌ No modificar el array original.
 ✅ Usar for o for...of.
-✅ El promedio debe redondearse a 2 decimales.
-✅ El cálculo del promedio debe hacerse manualmente.
- */
+✅ Usar objetos como acumuladores.
+✅ Crear un array final desde el objeto acumulador.
+*/
 
-const estudiantes = [
-  { nombre: "Ana", notas: [4, 3.5, 5] },
-  { nombre: "Carlos", notas: [2, 3, 2.5] },
-  { nombre: "Beatriz", notas: [5, 4.5, 4] },
-  { nombre: "Daniel", notas: [3, 3, 3] }
+const pedidos = [
+  { cliente: "Ana", total: 120 },
+  { cliente: "Carlos", total: 80 },
+  { cliente: "Ana", total: 50 },
+  { cliente: "Beatriz", total: 200 },
+  { cliente: "Carlos", total: 40 },
+  { cliente: "Ana", total: 30 },
 ];
 
-const buscarNotas = ((estudiantes) => {
-  
-  const resultadoFinal = [];
-  for (let estudiante of estudiantes) {
+const buscarPedidos = (pedidos) => {
+  let gastosClientes = [];
 
-    let promedio = promedioNotas(estudiante.notas);
-    //formas de realizar los objetos
+  try {
+    for (let pedido of pedidos) { 
+      const gastosPorCliente = {
+        cliente: pedido.cliente, //ana,carlos,ana,beatriz,carlos
+        totalGastado: pedido.total,
+      };
+      if (gastosClientes.length === 0) {
+        gastosClientes.push(gastosPorCliente);
 
-    //forma 1 
-  /*
-    const estudiantesYnotas = {};
-    
-    estudiantesYnotas['nombre'] = estudiante.nombre;
-    estudiantesYnotas["promedio"] = Number(promedio.toFixed(2)); // .toFixed crea un string por lo tanto hay que ponerlo dentro de la funcion Number
-    estudiantesYnotas['estado'] = (promedio >= 3) ? 'Aprobado' : 'Reprobado';
-    resultadoFinal.push(estudiantesYnotas);
+      } else {
+        let encontrado = false;
+        for (let cliente of gastosClientes) { // ana, carlos,beatriz
+            if (cliente.cliente === gastosPorCliente.cliente) {
+                cliente.totalGastado += gastosPorCliente.totalGastado;
+                encontrado = true;
+            } 
+        }
+
+        if(!encontrado){ //2 > 1
+             gastosClientes.push(gastosPorCliente);
+        }
+      }
     }
-  */
-  
-  //forma 2
-    const estudiantesYnotas = {
-      "nombre":estudiante.nombre,
-      "promedio":Number(promedio.toFixed(2)),
-      "estado": promedio >=3 ? "Aprobado":"Reprobado"
-    }
-    resultadoFinal.push(estudiantesYnotas);
+  } catch (e) {
+    console.log(e);
   }
-  return resultadoFinal;
-});
+  return gastosClientes;
+};
 
-const promedioNotas = ((notas) => {
-  let suma = 0;
-  for (let nota of notas) {
-    suma += nota;
-  }
-  return suma / notas.length;
-})
+resultado = buscarPedidos(pedidos);
 
-resultado = buscarNotas(estudiantes);
-for(let estudiante of resultado){
-  console.log(estudiante);
+for (let r of resultado) {
+  console.log(r);
 }
-
-
