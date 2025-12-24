@@ -1,14 +1,8 @@
 import {Persona} from './persona.js';
 
-
 let listPersonas = [];
 
-
-
-
 const personaForm = document.getElementById('personaForm');
-
-
 
 //creamos el evento que guardará los datos de la persona al realizar el submit
 Personaform.addEventListener('submit', function(event){
@@ -26,10 +20,6 @@ Personaform.addEventListener('submit', function(event){
     //limpiamos el formulario
     form.reset();
 })
-
-
-
-
 
 function cargarTabla(){
     const tbody = document.getElementById("tabla-personas");
